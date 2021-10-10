@@ -12,18 +12,6 @@ import javax.inject.Inject
 // Created by Deniz Can Çalışkan on 10.10.2021.
 //
 
-class Repository @Inject constructor(
-    private val retrofitService: RetrofitService,
-    private val responseMapper: ResponseMapper
-    ) {
-    suspend fun getQuote(): Flow<DataState<Quote>> = flow {
-        emit(DataState.Loading)
-        try {
-            val response = retrofitService.getResponse()
-            val quote = responseMapper.mapResponseToQuote(response)
-            emit(DataState.Success(quote))
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
+interface Repository {
+    suspend fun getQuote(): Flow<DataState<Quote>>
 }

@@ -3,6 +3,7 @@ package com.denizcanc.theofficequotes.di
 import com.denizcanc.theofficequotes.network.RetrofitService
 import com.denizcanc.theofficequotes.network.util.ResponseMapper
 import com.denizcanc.theofficequotes.repository.Repository
+import com.denizcanc.theofficequotes.repository.RepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,7 @@ object RepositoryModule {
     fun provideRepository(
         retrofit: RetrofitService,
         mapper: ResponseMapper
-    ): Repository{
-        return Repository(retrofit, mapper)
+    ): Repository {
+        return RepositoryImpl(retrofit, mapper)
     }
 }
